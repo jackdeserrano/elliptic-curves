@@ -1,0 +1,965 @@
+\documentclass[11pt, oneside]{article}
+
+\def\jtitle{Exercises from Silverman and Tate}
+\def\jauthor{Jack DeSerrano}
+\usepackage[annot]{jack}
+\setlength{\parindent}{0pt}
+
+
+
+\begin{document}
+\maketitle
+These are my solutions to the exercises to Joseph Silverman's and John Tate's \underline{Rational Points}\\ \underline{on Elliptic Curves} \cite{rat}.\footnote{See \url{https://link.springer.com/book/10.1007/978-1-4757-4252-7}.} Note that many exercises have been commented out due to the lack of a complete solution. 
+\tableofcontents
+\section{Geometry and Arithmetic}
+\begin{enumerate}
+\setlength{\parindent}{0pt}
+\item (a) If $P$ and $Q$ are distinct rational points in the $(x,y)$ plane, prove that the line connecting them is a rational line.
+\begin{proof}
+Let 
+$$
+P = (a/b, c/d)\quad \textrm{and} \quad Q = (e/f,g/h)
+$$
+and let $y = \lambda x + \nu$ be the line connecting $P$ and $Q$. Then the slope of this line is rational: 
+$$
+\lambda = \frac{c/d - g/h}{a/b -e/f}.
+$$
+The $y$-intercept of this line is also rational:
+$$
+\nu = c/d-\lambda(a/b).
+$$
+So the line is rational.
+\end{proof}
+(b) If $L_1$ and $L_2$ are distinct rational lines in the $(x,y)$ plane, prove that their intersection is a rational point (or empty).
+\begin{proof}
+Let  
+$$
+L_1 : y = (a/b)x + c/d \quad\textrm{and}\quad L_2 : (e/f)x + g/h.
+$$ 
+If $a/b = e/f$, then their intersection is either empty or the whole line, and then the job is done. If not, then the horizontal component of their intersection is rational, as corroborated below.
+\begin{align*}
+(a/b)x + c/d &= (e/f)x + g/h\\
+(a/b - e/f)x &= g/h - c/d\\
+x &= \frac{g/h - c/d}{a/b - e/f}
+\end{align*}
+Since the horizontal component of a point on a rational line is rational, then so is the vertical component. So the intersection is rational.
+\end{proof}
+%\item Let $C$ be the conic given by the equation
+%$$
+%F(x,y) = ax^2 + bxy + cy^2 + dx+ ey +f =0,
+%$$
+%and let $\delta$ be the determinant
+%$$
+%\det\left ( \begin{array}{ccc} 2a & b & d \\ b & 2c & e \\ d & e & 2f\end{array}\right).
+%$$
+%(a) Show that if $\delta\neq 0$, then $C$ has no singular points. That is, show that there are no points $(x,y)$ where
+%$$
+%F(x,y) = \frac{\partial F}{\partial x} (x,y) = \frac{\partial F}{\partial y} (x,y) = 0.
+%$$
+%\begin{proof} % improve
+%Homogenize $F$ such that one attains the equation of the projective conic corresponding to $C$:
+%$$
+% F^*(x,y,z) = ax^2 + bxy +cy^2 +dxz+eyz+fz^2.t
+%$$ 
+%Consider a curve of degree $d$ in the projective plane given by $G=0$ for some homogenous polynomial $G[x,y,z]\in\C[x,y,z]$ A point $P$ is singular on this curve if and only if
+%$$
+%\frac{\partial G}{\partial x} (P) = \frac{\partial G}{\partial y} (P) = \frac{\partial G}{\partial z} (P) = 0.
+%$$ 
+%A theorem of Euler \cite{hom} guarantees that such a $P$ is on the curve. This notion is applied to $F*$. One notices that the columns of the matrix in question correspond to the coefficients of the partial derivatives of $F^*$. Therefore, the above condition (of the determinant) is necessary for there to exist a singular point on the projective conic defined by $F^*$, and thus on $C$.
+%\end{proof}
+%(b) Conversely, show that if $\delta = 0$ and $b^2 - 4ac \neq 0$, then there is a unique singular point on $C$. % see https://en.wikipedia.org/wiki/Matrix_representation_of_conic_sections
+
+%\item Let $C$ be the conic given by the equation
+%$$
+%x^2 - 3xy + 2y^2 - x +1 = 0.
+%$$
+%(a) Check that $C$ is non-singular.
+%\begin{proof}
+%A conic defined by the equation 
+%$$
+%F(x,y) = ax^2 + bxy + cy^2 + dx+ ey +f =0
+%$$
+%is non-singular if 
+%$$
+%\det\left ( \begin{array}{ccc} 2a & b & d \\ b & 2c & e \\ d & e & 2f\end{array}\right) \neq 0.
+%$$
+%Computing the appropriate determinant corroborates that $C$ is non-singular.
+%\end{proof}
+%(b) Let $L$ be the line $y=\alpha x + \beta$. Suppose that the intersection $L\cap C$ contains the point $P_0 = (x_0,y_0)$. Assuming that $L\cap C$ consists of two distinct points, find the second point of $L\cap C$ in terms of $\alpha$, $\beta$, $x_0$, $y_0$.
+\setcounter{enumi}{3}
+\item Find all primitive integral right triangles whose hypotenuse has length less than $30$.
+\begin{proof}
+Choose two coprime positive integers $m > n$ with opposite parities. One attains a primitive triple by 
+$$
+(m^2 - n^2, 2mn, m^2 + n^2).
+$$
+Any primitive triple is of this form. One uses this formula to attain all of the primitive integral triples with hypotenuse less than $30$:
+\begin{align*}
+(3,4,5), \quad(5,12,13), \quad(15, 8, 17), \quad(21, 20, 29), \quad(7, 24, 25).
+\end{align*}
+\end{proof}
+\item Find all of the rational points on the circle 
+$$
+x^2 + y^2 = 2
+$$
+by projecting from the point $(1,1)$ onto an appropriate rational line. 
+\begin{proof}
+Project from $(1,1)$ onto the line $y=-x$. With this projection and $t$ a real number, one obtains the following equation for the line:
+$$
+y =  \frac{t+1}{t-1}(1-x) + 1.
+$$
+One uses the relation
+$$
+2 - x^2 = \left(\frac{t+1}{t-1}(1-x) + 1\right)^2
+$$
+to determine the rational parametrization of $x^2 + y^2 = 2$:
+$$
+x=\frac{t^2+2t-1}{t^2+1},\quad y=\frac{t^2-2t-1}{t^2+1}.
+$$
+\end{proof}
+\item (a) Let $a$, $b$, $c$, $d$, $e$, and $f$ be non-zero real numbers. Use the substitution $t = \tan(\theta/2)$ to transform the integral 
+$$
+\int \frac{a+b\cos\theta + c\sin\theta}{d+e\cos\theta + f\sin \theta}\,d\theta
+$$
+into the integral of a rational function in $t$.
+\begin{proof}
+If $t = \tan(\theta/2)$, then one finds that
+$$
+\cos\theta = \frac{1-t^2}{1+t^2} \quad\textrm{and}\quad \sin\theta = \frac{2t}{1+t^2}.
+$$
+Since
+$$
+d\theta = \frac{2dt}{1+t^2},
+$$
+one can determine that
+$$
+\int \frac{a+b\cos\theta + c\sin\theta}{d+e\cos\theta + f\sin \theta}\,d\theta = 2\int \frac{at^2-bt^2+2ct+a+b}{dt^4-et^4+2ft^3 + 2dt^2 + 2ft +d+e}\,dt.
+$$
+\end{proof}
+(b) Evaluate the integral
+$$
+\int \frac{a+b\cos \theta + c\sin\theta}{1+\cos\theta+\sin\theta}\,d\theta.
+$$
+\begin{proof}
+Using what was derived in (a), one attains an equivalent form of the integral in question:
+$$
+\int\frac{(a-b)t^2 + 2c t +a +b}{t^3+t^2+t+1}\,dt.
+$$
+This antiderivative comes out to
+$$
+(a-c)\log|t+1| + \frac{(c-b)\log(t^2+1)}{2} + (c+b)\arctan t + C.
+$$
+Substituting $t=\tan(\theta/2)$, one determines that the antiderivative in question evaluates to
+$$
+(a-c)\log\left|\tan(\theta/2) + 1\right| + \frac{(c-b)\log(\tan^2(\theta/2) +1) + (b+c)\theta}{2} + C.
+$$
+\end{proof}
+\item For each of the following conics, either find a rational point or prove that there are no rational points.\\
+(a)\qquad $x^2+y^2=6$
+\begin{proof}
+A theorem of Legendre states that an equation of the form
+$$
+aX^2 + bY^2 + cZ^2 = 0
+$$
+has a non-zero solution in the integers if and only if the following conditions hold:
+\begin{enumerate}[label =\arabic*.]
+\item$a$, $b$, and $c$ do not have the same sign.
+\item $-bc$ is a square modulo $|a|$.
+\item $-ac$ is a square modulo $|b|$.
+\item $-ab$ is a square modulo $|c|$.
+\end{enumerate}
+Here, $a=1$, $b=1$, and $c=-6$. One notices that $-1$ is not a square modulo $6$, and so the conic in question has no rational points. One may also argue by Fermat's method of infinite descent \cite{rad6}.
+\end{proof}
+(b)\qquad $3x^2+5y^2=4$
+\begin{proof}
+One notices that since $20\equiv 2$ is not a quadratic residue modulo $3$, the conic in question has no rational points. 
+\end{proof}
+(c)\qquad $3x^2+6y^2=4$
+\begin{proof}
+One notices that since $18\equiv 2$ is not a quadratic residue modulo $4$, the conic in question has no rational points. 
+\end{proof}
+\item Prove that for every exponent $e\ge  1$, the congruence
+$$
+x^2+1\equiv 0\pmod{5^e}
+$$
+has a solution $x_e\in \Z/5^e\Z$. Prove further that these solutions can be chosen to satisfy
+$$
+x_1 \equiv 2\pmod 5 \quad \textrm{and}\quad x_{e+1} \equiv x_e \pmod {5^e} \textrm { for all } e \ge  1.
+$$
+(This is equivalent to showing that the equation $x^2+1=0$ has a solution in the $5$-adic numbers. It is a special case of Hensel's lemma. \textit{Hint.} Use induction on $e$.)
+\begin{proof}
+$x_1=2$, for example, is a solution in $\Z/5\Z$. One looks in $\Z/5^{e+1}\Z$ with the second constraint in mind. Suppose $m$ and $j$ are natural numbers. Then the following holds.
+\begin{align*}
+(5^em+x_e)^2 +1 	&\equiv 5^{2e}m^2+2x_e5^em+x^2_e + 1\\
+				&\equiv 5^{e+1}5^{e-1}m^2 + 2x_e5^em+j5^e\\
+				&\equiv (2x_em+j)5^e.
+\end{align*}
+$x_e$ is not a multiple of $5$, so one can choose an $m$ such that 
+$$
+2x_em\equiv -j\pmod {5}.
+$$
+The above expression is thus a multiple of $5^{e+1}$ as desired. For example,
+$$
+m=2jx_e^3
+$$
+suffices.
+\end{proof}
+\item Let $C_1$ and $C_2$ be the cubics given by the following equations:
+$$
+C_1 : x^3+2y^3-x-2y=0,\quad C_2:2x^3-y^3-2x+y=0.
+$$
+(a) Find the nine points of intersection of $C_1$ and $C_2$.
+\begin{proof}
+Setting $C_1=C_2$, one attains
+$$
+0 = x(x+1)(x-1) - 3y (y+1)(y-1).
+$$
+One sees that any of $x=0,\,\pm 1$ pairs with any of $y=0,\,\pm 1$ to yield a point of intersection. There are nine possibilities here, which exhausts all points of intersection. Therefore, the set of points of intersection is 
+$$
+\{(0,0),  (0,1),  (0,-1),  (1,0),  (1,1), (1,-1),  (-1,0), (-1,1), (-1,-1)\}.
+$$
+\end{proof}
+(b) Let $\{ (0,0), P_1, \hdots, P_8 \}$ be the nine points from part (a). Prove that if a cubic curve goes through $P_1,\hdots,P_8$, then it must also go through the ninth point $(0,0)$.
+\begin{proof}
+The result follows from the Cayley-Bacharach theorem \cite{tao}. As Silverman and Tate put it, by B\'ezout's theorem, any two cubics with no common components defined in the projective plane with multiplicities of intersections and complex coordinates have $9$ points of intersection. They call ``the set of all cubics\ldots so to speak, nine dimensional.'' When one requires the cubic to go through a specified point, the set loses a dimension. So the family of cubics that intersect eight specified points is one dimensional. If $F(x,y)$ and $G(x,y)$ define two cubics, then one can find cubics going through the eight points by taking linear combinations $\lambda_1F(x,y) +\lambda_2G(x,y)$. It follows that the cubic in question has an equation 
+$$
+\lambda_1F(x,y) +\lambda_2G(x,y) = 0
+$$
+for suitable $\lambda_1$ and $\lambda_2$. Since $F(x,y)$ and $G(x,y)$ both vanish at the ninth point, so does $\lambda_1F(x,y) +\lambda_2G(x,y)$. Therefore, the cubic in question goes through all nine points, including $(0,0)$.
+\end{proof}
+%\item Define a composition law on the points of a cubic $C$ by the following rule as described in the text: Given $P,Q\in C$, then $P*Q$ is the point on $C$ so that $P$, $Q$, and $P*Q$ are collinear.\\
+%(a) Explain why this law is commutative, $P*Q=Q*P$.
+%\begin{proof}
+%The line connecting $P$ with $Q$ is the same line conntecting $Q$ with $P$.
+%\end{proof}
+%(b) Prove that there is no identity element for this composition law; that is, there is no element $P_0\in C$ such that $P_0*P=P$ for all $P\in C$.
+%\begin{proof}
+%Suppose there is a $P_0\in C$ satisfying the property in question. Then the line connecting $P_0$ and $P$ is tangent to $P$ for all $P$, i.e. the tangent line to every point on $C$ also goes through $P_0$. This is absurd. So no $P_0$ satisfies this property.
+%\end{proof}
+%(c) Prove that this composition law is not associative; that is, in general $P*(Q*R) \neq (P*Q)*R$.
+%\begin{proof}
+%$P*(Q*R)$ is the point that is collinear to $P$ and also to the point that is collinear to $Q$ and $R$. $(P*Q)*R$ is the point that is collinear to the point that is collinear to $P$ and $Q$ and also to $R$. %finish
+%\end{proof}
+\setcounter{enumi}{10}
+\item Let $S$ be a set with a composition law $*$ satisfying the following two properties:
+\begin{enumerate}[label=(\roman*)]
+\item \quad $P*Q=Q*P$ for all $P, Q\in S$.
+\item \quad $P*(P*Q) = Q$ for all $P,Q\in S$. 
+\end{enumerate}
+Fix an element $\OO\in S$, and define a new composition law $+$ by the rule
+$$
+P+Q = \OO *(P*Q).
+$$ 
+(a) Prove that $+$ is commutative and has $\OO$ as identity element.
+\begin{proof}
+$+$ inherits commutativity from $*$:
+\begin{align*}
+Q + P 	&= \OO * (Q * P)\\
+		&= \OO * (P * Q)\\
+		&= P + Q.
+\end{align*}
+$\OO$ being the identity is corroborated below:
+\begin{align*}
+P+\OO 	&= \OO * (P * \OO)\\
+		&= \OO * (\OO * P)\\
+		&= P.
+\end{align*}
+\end{proof}
+(b) Prove that for any given $P,Q\in S$, the equation $X+P=Q$ has the unique solution $X=P*(Q*\OO)$ in $S$. In particular, if we define $-P$ to be $P* (\OO*\OO)$, then $-P$ is the unique solution in $S$ of the equation $X+P=\OO$.
+\begin{proof}
+\begin{align*}
+(P*(Q*\OO)) +  P	&= \OO * ((P*(Q*\OO)) * P)\\
+				&= \OO * (P *(P*(Q*\OO)))\\
+				&= \OO * (Q *\OO)\\
+				&= \OO * (\OO * Q)\\
+				&= Q.
+\end{align*}
+The unicity of this solution follows elementarily. % how?
+\end{proof}
+(c) Prove that $+$ is associative (and so $(S,+)$ is a group) if and only if 
+$$
+R * (\OO * (P *Q)) = P * (\OO *( Q * R))\quad \textrm {for all } P,Q,R\in S.
+$$
+\begin{proof}
+\begin{align*}
+P+(Q+R) &= (P+Q) + R\\
+\OO * (P * (Q+R)) &= \OO * ((P+Q)* R)\\
+\OO * (P*(\OO * (Q*R))) & = \OO * ((\OO * (P*Q))*R)\\
+P*(\OO * (Q*R)) &= R * (\OO * (P*Q)).
+\end{align*}
+One sees that the condition of associativity is equivalent to the condition in question.
+\end{proof}
+%(d) Let $\OO'\in S$ be another point, and define a composition law $+'$ by $P+' Q = \OO' *(P*Q)$. Suppose that both $+$ and $+'$ are associative, so we obtain two group structures $(S, +)$ and $(S, +')$ on $S$. Prove that the map
+%$$
+%P \longmapsto \OO * (\OO' * P)
+%$$
+%is a (group) isomorphism from $(S, +)$ and $(S, +')$.
+%\begin{proof}
+%
+%\end{proof}
+%(e) Find a set $S$ with a composition law $*$ satisfying (i) and (ii) such that $(S,+)$ is not a group.
+%\begin{proof}
+%
+%\end{proof}
+\end{enumerate}
+
+\section{Points of Finite Order}
+\begin{enumerate}
+\setlength{\parindent}{0pt}
+\item Let $A$ be an abelian group, and for every integer $m\ge  1$, let $A_m$ be the set of elements $P\in A$ satisfying $mP=\OO$.\\
+(a) Prove that $A_m$ is a subgroup of $A$.
+\begin{proof}
+Let $a,b\in A_m$, $|a|=r$, and $|b|=s$. Since 
+$$
+|a+b| \mid \textrm{lcm}(r,s),
+$$
+and $r\mid m$ and $s\mid m$ by assumption, 
+$$
+|a+b| \mid m.
+$$ 
+Since the order of an element's inverse is the same as the order of the element, and $\OO$ is always in $A_m$, $A_m$ is a subgroup of $A$.
+\end{proof}
+(b) Suppose that $A$ has order $M^2$, and further that for every integer $m$ dividing $M$, the subgroup $A_m$ has order $m^2$. Prove that $A$ is the direct product of two cyclic subgroups of order $M$. 
+\begin{proof}
+Suppose $a \neq \OO \in A_p$ for some prime $p\mid M$ where $|a| = p$ . Then 
+$$
+\langle a\rangle \subset A_p
+$$
+where $|\langle a\rangle| = p$. Suppose $b \neq \OO \in A_p$ and $b\notin \langle a \rangle$. Then 
+$$
+\langle b\rangle \subset A_p
+$$
+where $|\langle b\rangle| = p$. So $A_p = \langle a\rangle \oplus \langle b\rangle$, since by assumption $|A_p| =p^2$. This argument works because $A_p$ is a group of order $p^2$ in which for all $a\in A_p$, $pa = \OO$. Since $p$ is prime, $|a| = p$ for all $p\neq \OO$, so $a$ generates a cyclic group of order $p$. By the same argument and the condition that $|A_p| = p^2$, $A_p$ must be a direct product of $\langle a\rangle$ and another cyclic group of order $p$. 
+%Suppose $m = p_1^{n_1} \cdots p_k^{n_k}$. Let $a_i$ be an element of order $p_i$. Then there is an element in $A_m$ whose order is the product of the $p_i$s (the exponent):
+%\begin{align*}
+%\left|  \sum_i a_i  \right| &= \textrm{lcm}(p_1,\hdots,p_k)\\
+%				   &= \prod_i p_i.
+%\end{align*}
+\textit{One needs to show that for all $m$, there is an element of order $m$ in $A_m$, i.e. there is an element of order $M$ in $A$.}
+\end{proof}
+%(c) Find an example of a non-abelian group $G$ and an integer $m\ge  1$ so that the set $G_m = \{g\in G : g^m = e\}$ is not subgroup of $G$.
+%\begin{proof}
+%
+%\end{proof}
+\item Let $C$ be a non-singular cubic curve given by the usual Weierstrass equation
+$$
+y^2 = f(x) = x^3 +ax^2+bx+c.
+$$
+(a) Prove that
+$$
+\frac{d^2y}{dx^2} = \frac{2f''(x)f(x) - f'(x)^2}{4yf(x)} = \frac{\psi_3(x)}{4yf(x)}.
+$$
+Use this to deduce that a point $P = (x,y)\in C$ is a point of order three if and only if $P\neq\OO$ and $P$ is a point of inflection on the curve $C$.
+\begin{proof}
+One finds that
+$$
+\frac{d^2y}{dx^2} = \frac{2y^2(6x+2a) -(3x^2+2ax+b)^2}{4y^3}.
+$$
+According to Silverman and Tate (p. 40), the roots of $\psi_3(x)$ correspond to the points of order three on $C$. The points of order three, therefore, are the points of inflection.
+\end{proof}
+(b) Suppose now that $a$, $b$, and $c$ are in $\R$. Prove that $\psi_3(x)$ has exactly two real roots, say $\alpha_1$ and $\alpha_2$ with $\alpha_1<\alpha_2$. Prove that $f(\alpha_1)<0$ and $f(\alpha_2)>0$. Use this to deduce that the points in $C(\R)$ of order dividing $3$ form a cyclic group of order three.
+\begin{proof}
+One should note that $\psi_3(x)$ has four distinct complex roots. A quartic polynomial with real coefficients and a positive leading coefficient has exactly two real roots if it takes negative values at all roots of its derivative. Silverman and Tate note that
+$$
+\psi_3' (x) = 12f(x),
+$$
+so the roots of $\psi_3' (x)$ correspond to the roots of $f(x)$. Using the fact that 
+$$
+\psi_3(x) = 2f''(x)f(x) - f'(x)^2,
+$$
+and setting $f(x)=0$, one finds that 
+$$
+\psi_3(x) < 0
+$$
+when $\psi_3'(x)=0$. So $\psi_3(x)$ has exactly two real roots. Silverman and Tate note that if $m$ is odd, the points of order dividing $m$ in $C(\R)$ form a cyclic group of order $m$. So in the case $m=3$, one attains a cyclic group of order $3$, with the point at infinity being the identity. The other two points correspond to $(\alpha_2, \pm \delta_2)$, where $\alpha_2$ is the real root of $\psi_3(x)$ greater than zero at $f$ and $\delta_2 =\sqrt{f(\alpha_2)}$. There are no other points of order dividing $3$ in $C(\R)$, which implies that $\alpha_1$, though it is real, satisfies the following:
+$$
+y^2 = f(\alpha_1) < 0.
+$$
+If this wasn't the case, then $\alpha_1$ would correspond to two other points of order three. So the second requirement holds. 
+% does $\sqrt{\textrm{cubic}} \implies$ $1$ point of inflection?
+\end{proof}
+\item Let $\omega_1,\omega_2\in\C$ be two complex numbers which are $\R$--linearly independent, and let 
+$$
+L = \Z\omega_1 + \Z\omega_2 = \{n_1\omega_1 + n_2\omega_2 : n_1,n_2\in\Z\}
+$$
+be the lattice of $\C$ that they generate.\\
+(a) Show that the series
+$$
+\wp (u) = \frac{1}{u^2} + \sum_{\substack{\omega\in L\\\omega\neq 0}}\left(  \frac{1}{(u-\omega)^2} - \frac{1}{\omega^2} \right)
+$$
+defining the Weierstrass $\wp$ function is absolutely and uniformly convergent on any compact subset of the complex $u$ plane which does not contain any of the points of $L$. Conclude that $\wp$ is a meromorphic function with a double pole at each point of $L$ and that $\wp$ has no other poles. \textit{Please come back to this question after more experience in analysis.}
+% uniform convergence: if $E$ is a set and $(f_n)_{n\in \N}$ is a sequence of real-valued functions on $E$, $(f_n)_{n\in \N}$ is uniformly convergent on $E$ with limit $f : E\to \R$ if for every $\epsilon > 0$ there exists $$  |f_n(x)-f(x)| < \epsilon.  $$
+% uniform absolute convergence: the series $\sum_n f_n(x)$ is uniformly convergent if $\sum_n |f_n(x)|$ converges absolutely.  
+% a compact subset of the complex plane is one which is closed and bounded.
+% a holomorphic function is one that is at every point of its sub domain complex differentiable in a neighbourhood of the point
+% a meromorphic function is holomorphic everywhere except for its poles
+
+(b) Prove that $\wp$ is an even function.
+\begin{proof}
+Putting in $-u$ for $u$,
+\begin{align*}
+\wp (-u) &= \frac{1}{(-u)^2} + \sum_{\substack{\omega\in L\\\omega\neq 0}}\left(  \frac{1}{(-u-\omega)^2} - \frac{1}{\omega^2} \right)\\
+&=\frac{1}{u^2} + \sum_{\substack{\omega\in L\\\omega\neq 0}}\left(  \frac{1}{(u+\omega)^2} - \frac{1}{\omega^2} \right).
+\end{align*}
+One notices that if $\omega\in L$, then so is $-\omega$. So it is valid to replace $\omega$ with $-\omega$:
+\begin{align*}
+\wp (-u) &= \frac{1}{u^2} + \sum_{\substack{\omega\in L\\\omega\neq 0}}\left(  \frac{1}{(u-\omega)^2} - \frac{1}{\omega^2} \right)\\
+&=\wp(u).
+\end{align*}
+So $\wp$ is even.
+\end{proof}
+(c) Show that $\wp$ is a doubly periodic function; that is, show that
+$$
+\wp(u+\omega) = \wp(u) \textrm{ for every } u\in \C \textrm{ and every } \omega \in L.
+$$
+(\textit{Hint.} From (a), you can calculate the derivative $\wp'(u)$ by differentiating each term of the series defining $\wp(u)$. First prove $\wp ' (u+\omega) = \wp'(u)$, then integrate.)
+\begin{proof}
+One finds that
+$$
+\wp'(u) = -2\sum_{\omega\in L} \frac{1}{(u-\omega)^3}.
+$$
+Putting in $u+\omega_1$ for $u$ where $\omega_1\in L$,
+\begin{align*}
+\wp'(u+\omega_1) &= -2\sum_{\omega\in L} \frac{1}{(u+\omega_1-\omega)^3}.
+\end{align*}
+One notices that since both $\omega$ and $\omega_1$ are in the lattice, so is their difference. Furthermore, since $\omega_1$ is constant and $\omega$ is variable over all of $L$, their difference is the entire lattice. Therefore,
+\begin{align*}
+\wp'(u+\omega_1) &= -2\sum_{\omega\in L} \frac{1}{(u+\omega)^3}\\
+				&=  -2\sum_{\omega\in L} \frac{1}{(u-\omega)^3}\\
+				&= \wp'(u).
+\end{align*}
+Thus,
+$$
+\wp'(u+\omega_1) - \wp'(u) = 0
+$$
+so for some constant $a$
+$$
+\wp(u+\omega_1) - \wp(u) = a.
+$$
+Setting $u = -\omega_1/2$,
+\begin{align*}
+\wp(-\omega_1/2+\omega_1) - \wp(-\omega_1/2) &= a\\
+\wp(\omega_1/2) - \wp(-\omega_1/2) &= a\\
+\wp(\omega_1/2) - \wp(\omega_1/2) &= a\\
+0&=a.
+\end{align*}
+So $\wp$ is doubly periodic.
+\end{proof}
+\item Let $C$ be the cubic curve 
+$$
+y^2 = x^3+1.
+$$
+(a) For each prime $5\le  p < 30$, describe the group of points on this curve having coordinates in the finite field with $p$ elements.
+\begin{proof}
+A simple Python script with output below outputs the points on $C$ over $\F_p$ for a given $p$ as well as $N_p$: the total number of points listed adjoin the point at infinity.
+\footnotesize
+\begin{spverbatim}
+5
+[(0, 1), (0, 4), (2, 2), (2, 3), (4, 0)] 
+N_p = 6
+7
+[(0, 1), (0, 6), (1, 3), (1, 4), (2, 3), (2, 4), (3, 0), (4, 3), (4, 4), (5, 0), (6, 0)] 
+N_p = 12
+11
+[(0, 1), (0, 10), (2, 3), (2, 8), (5, 4), (5, 7), (7, 5), (7, 6), (9, 2), (9, 9), (10, 0)] 
+N_p = 12
+13
+[(0, 1), (0, 12), (2, 3), (2, 10), (4, 0), (5, 3), (5, 10), (6, 3), (6, 10), (10, 0), (12, 0)] 
+N_p = 12
+17
+[(0, 1), (0, 16), (1, 6), (1, 11), (2, 3), (2, 14), (6, 8), (6, 9), (7, 2), (7, 15), (9, 4), (9, 13), (10, 7), (10, 10), (14, 5), (14, 12), (16, 0)] 
+N_p = 18
+19
+[(0, 1), (0, 18), (2, 3), (2, 16), (3, 3), (3, 16), (8, 0), (12, 0), (14, 3), (14, 16), (18, 0)] 
+N_p = 12
+23
+[(0, 1), (0, 22), (1, 5), (1, 18), (2, 3), (2, 20), (10, 9), (10, 14), (12, 2), (12, 21), (13, 6), (13, 17), (14, 10), (14, 13), (15, 8), (15, 15), (16, 7), (16, 16), (19, 11), (19, 12), (21, 4), (21, 19), (22, 0)] 
+N_p = 24
+29
+[(0, 1), (0, 28), (2, 3), (2, 26), (3, 12), (3, 17), (4, 6), (4, 23), (7, 5), (7, 24), (8, 7), (8, 22), (9, 11), (9, 18), (13, 9), (13, 20), (17, 10), (17, 19), (18, 2), (18, 27), (19, 4), (19, 25), (22, 8), (22, 21), (25, 13), (25, 16), (27, 14), (27, 15), (28, 0)] 
+N_p = 30
+\end{spverbatim}
+\normalsize
+\end{proof}
+(b) For each prime in (a), let $M_p$ be the number of points in the group. (Don't forget the point at infinity.) For the set of primes satisfying $p\equiv 2\pmod 3$, can you see a pattern for the values of $M_p$? Make a general conjecture for the value of $M_p$ when $p\equiv 2\pmod 3$ and prove that your conjecture is correct.
+\begin{proof}
+The primes $p$ between $5$ and $30$ with $p\equiv 2\pmod 3$ are $5$, $11$, $17$, $23$, and $29$. One notices that for each $p$ with this property, 
+$$M_p = p+1.$$
+One tries to search for counterexamples, but none seem to show up. One notes that $3$ does not divide the order of $\F_p^*$ in the case in question. Therefore, $x\mapsto x^3$ is an $\F_p^*$-automorphism. Therefore, the equation
+$$
+y^2 = x + 1
+$$
+is equally valid over $\F_p$. One chooses an element in $\F_p$ for $y$; the fact that only one corresponding $x$ exists is apparent. Thus, there are $p$ solutions for elements in $\F_p$, and, with the point at infinity, 
+$$
+M_p = p + 1
+$$
+for all $p\equiv 2\pmod 3$.
+\end{proof}
+\item Let $f(x)= x^2+ax+b = (x-\alpha_1)(x-\alpha_2)$ be a quadratic polynomial with the indicated factorization. Prove that
+$$
+(\alpha_1-\alpha_2)^2 = a^2 - 4b.
+$$
+\begin{proof}
+One finds that $b = \alpha_1\alpha_2$ and $a = -(\alpha_1 + \alpha_2)$; an easy way to reach such a conclusion is to think of how one factors $f(x)$ in terms of $a$ and $b$. It follows that
+\begin{align*}
+a^2 -4b	&= (-(\alpha_1+\alpha_2))^2 - 4\alpha_1\alpha_2\\
+		&= (\alpha_1 + \alpha_2)^2 - 4\alpha_1\alpha_2\\
+		&= \alpha_1^2 + 2\alpha_1\alpha_2 + \alpha_2^2 - 4\alpha_1\alpha_2\\
+		&= \alpha_1^2 - 2\alpha_1\alpha_2 + \alpha_2^2\\
+		&= (\alpha_1 - \alpha_2)^2.
+\end{align*}
+So the proof is complete.
+\end{proof}
+(b) Let $f(x) = x^3+ax^2+bx+c=(x-\alpha_1)(x-\alpha_2)(x-\alpha_3)$ be a cubic polynomial with the indicated factorization. Prove that
+$$
+(\alpha_1-\alpha_2)(\alpha_1-\alpha_3)(\alpha_2-\alpha_3) = -4a^3c +a^2b^2 + 18abc - 4b^3 - 27c^2.
+$$
+\begin{proof}
+One finds that $a = -(\alpha_1+\alpha_2+\alpha_3)$, $b = \alpha_1\alpha_2 + \alpha_1\alpha_3 + \alpha_2\alpha_3$, and $c=-\alpha_1\alpha_2\alpha_3$.  Using these relations, one can prove (as is done in \texttt{cubic\_discriminant.pdf}) the equality in question.
+\end{proof}
+(c) Let
+$$
+f(x) = x^n + a_1x^{n-1} +\cdots + a_n = (x-\alpha_1)(x-\alpha_2)\cdots(x-\alpha_n)
+$$
+be a polynomial with the indicated factorization. The \textit{discriminant of $f$} is defined to be
+$$
+\textrm{Disc}(f) =\prod_{i=1}^{n-1}\prod_{j=i+1}^n (\alpha_i-\alpha_j)^2,
+$$
+so $\textrm{Disc}(f)=0$ if and only if $f$ has a double root. Prove that $\textrm{Disc}(f)$ can be expressed as a polynomial in the coefficients $a_1,\hdots , a_n$ of $f$. 
+\begin{proof}
+By Vieta's formulas \cite{vieta}, one obtains a system of $n$ distinct equations in the $n$ roots of $f(x)$ in terms of the coefficients of $f(x)$. Therefore, one can solve for each root of the polynomial in terms of the coefficients, substitute these values into the formula for the discriminant, and obtain the desired polynomial.
+\end{proof}
+\item Let $p$ be a prime, and for a rational number $r = (m/n)p^\nu$ with $m,n$ prime to $p$, let $\ord(r) = \nu$ be as in the text. [By convention, we will set $\ord(0)=\infty$.]\\
+(a) Prove that for all rational numbers $r_1$ and $r_2$,
+$$
+\ord (r_1r_2) = \ord(r_1) + \ord(r_2).
+$$
+\begin{proof}
+If $r_1=0$ (without loss of generality), then the identity in question holds, for
+\begin{align*}
+\ord(0\cdot r_2) &= \ord(0) + \ord(r_2)\\
+\ord(0)		&=\ord(0) + \ord(r_2)\\
+\infty			&= \infty + \ord(r_2)\\
+\infty			&= \infty.
+\end{align*}
+If $r_1=(m_1/n_1)p^{k_1}$ and $r_2 = (m_2/n_2)p^{k_2}$, then the identity also holds:
+\begin{align*}
+\ord\left(\frac{m_1}{n_1}p^{k_1} \cdot \frac{m_2}{n_2}p^{k_2} \right) 	&= \ord\left(\frac{m_1}{n_1}p^{k_1}\right) + \ord\left(\frac{m_2}{n_2}p^{k_2}\right)\\
+\ord\left(  \frac{m_1m_2}{n_1n_2}p^{k_1+k_2}  \right)				&= k_1 + k_2\\
+k_1+k_2												&= k_1 + k_2.
+\end{align*}
+\end{proof}
+(b) Prove that for all rational numbers $r_1$ and $r_2$,
+$$
+\ord(r_1+r_2) \ge  \min\{  \ord(r_1),\ord(r_2)  \}.
+$$
+Further, if $\ord(r_1) \neq\ord(r_2)$, prove that the inequality is an equality.
+\begin{proof}
+If $\ord(r_1) = \ord(r_2)$, one gets the following:
+\begin{align*}
+\ord\left(\frac{m_1}{n_1}p^{k} + \frac{m_2}{n_2}p^{k} \right) &\ge  \min\left\{    \ord\left(\frac{m_1}{n_1}p^{k}\right) , \ord\left(\frac{m_2}{n_2}p^{k}\right)\right\}\\
+\ord\left(p^k\left(\frac{m_1}{n_1} + \frac{m_2}{n_2} \right)\right) & \ge  \min\{k,k\}\\
+\ord\left(p^k\left(\frac{m_1n_2 + m_2n_1}{n_1n_2} \right)\right) &\ge  k\\
+k+\ord\left(\frac{m_1n_2 + m_2n_1}{n_1n_2} \right) &\ge  k.
+\end{align*}
+$n_1n_2$ must be prime to $p$, but $m_1n_2 + m_2n_1$ does not need to be prime to $p$. So
+$$
+\ord\left(\frac{m_1n_2 + m_2n_1}{n_1n_2} \right) = \ell \ge  0,
+$$
+and thus
+$$
+k + \ell \ge  k
+$$
+holds, and so does the original inequality. If $\ord(r_1) \neq\ord(r_2)$, and (without loss of generality) $\ord(r_1) >\ord(r_2)$, one attains the following:
+\begin{align*}
+\ord\left(\frac{m_1}{n_1}p^{k_1} + \frac{m_2}{n_2}p^{k_2} \right) &\ge  \ord(r_2)\\
+\ord\left(p^{k_1} + \frac{m_2n_1}{m_1n_2}p^{k_2} \right) &\ge  k_2\\
+\ord\left(p^{k_1} + \frac{m_3}{n_3}p^{k_2} \right) &\ge  k_2,
+\end{align*}
+where $m_3$ and $n_3$ are prime to $p$. Then, using the fact that $k_1 - k_2 >0$,
+\begin{align*}
+\ord\left(p^{k_2}\left( p^{k_1-k_2} + \frac{m_3}{n_3}\right) \right) &\ge  k_2\\
+k_2 + \ord\left( p^{k_1-k_2} + \frac{m_3}{n_3}\right) &\ge  k_2\\
+\ord\left( \frac{n_3p^{k_1-k_2} + m_3}{n_3}\right) &\ge  0.
+\end{align*}
+Since $p$ divides $p^{k_1-k_2}$ but does not divide $m_3$, $p$ cannot divide the numerator. Similarly, $p$ does not divide $n_3$, so it cannot divide the denominator. Therefore,  
+$$
+\ord\left( \frac{n_3p^{k_1-k_2} + m_3}{n_3}\right) = 0
+$$
+and the inequality is an equality as desired.
+\end{proof}
+(c) Define an ``absolute value'' on the rational numbers by the rule 
+$$
+\|r\| = \frac{1}{p^{\ord(r)}}.
+$$
+(By convention, we set $\|0\|=0.)$ Prove that $\|\cdot\|$ has the following properties:\\
+\begin{enumerate}[label = (\roman*)]
+\item $\| r\| \ge  0$; and $\| r\| =0$ if and only if $r=0$.
+\item $\|r_1r_2\| = \|r_1\| \cdot \|r_2\|$.
+\item $\|r_1+r_2\| \le  \max\{   \|r_1\|,\|r_2\|  \}$.
+\end{enumerate}
+\textrm{}\\
+Notice that property (iii) is stronger than the usual triangle inequality. The absolute value $\| \cdot\|$ is called the \textit{$p$-adic absolute value} on the rational numbers. It can be used to define a topology on the rational numbers, the \textit{$p$-adic topology}.
+\begin{proof}
+In each proof, the $m_i$ and $n_i$ are prime to $p$. (i) $\ord(r)$ is an integer for all $r\neq 0$. $1/p^n > 0$ for all integers $n$. By convention, $\| 0 \| =0$, so both conditions are met.\\
+(ii) If $r_1=(m_1/n_1)p^{k_1}$ and $r_2 = (m_2/n_2)p^{k_2}$, then the identity in question holds:
+\begin{align*}
+\left\| \frac{m_1}{n_1}p^{k_1} \cdot \frac{m_2}{n_2}p^{k_2} \right\| & = \left\| \frac{m_1}{n_1}p^{k_1} \right\| \cdot \left\| \frac{m_2}{n_2}p^{k_2} \right\|\\
+\left\| \frac{m_1m_2}{n_1n_2}p^{k_1+k_2} \right\| & =\frac{1}{p^{k_1}} \cdot \frac{1}{p^{k_2}}\\
+\frac{1}{p^{k_1+k_2}} &= \frac{1}{p^{k_1+k_2}} .
+\end{align*}
+(iii) Suppose $\|r_1\| = \|r_2\|$. Then the inequality in question holds:
+\begin{align*}
+\left\|\frac{m_1}{n_1}p^{k}+\frac{m_2}{n_2}p^{k}\right\|& \le  \max\left\{   \left\|\frac{m_1}{n_1}p^{k}\right\| , \left\|\frac{m_2}{n_2}p^{k}\right\| \right\}\\
+\left\|p^k \left(\frac{m_1}{n_1}+\frac{m_2}{n_2}\right)\right\|& \le  \max\left\{   \frac{1}{p^{k}} , \frac{1}{p^k}\right\}\\
+\frac{1}{p^k} &\le  \frac{1}{p^k}.
+\end{align*}
+Suppose (without loss of generality) that $\|r_1\|>\|r_2\|$. Then, using the fact that $k_1 < k_2$, one obtains
+\begin{align*}
+\left\|\frac{m_1}{n_1}p^{k_1}+\frac{m_2}{n_2}p^{k_2}\right\|& \le  \max\left\{   \left\| r_1\right\| ,\left \|r_2\right\|\right\}\\
+\left\|\frac{m_1}{n_1}p^{k_1} \left(1+\frac{m_2n_1}{m_1n_2}p^{k_2-k_1}\right)\right\|& \le  \|r_1\|\\
+\left\|\frac{m_1}{n_1}p^{k_1}\right\| \cdot \left\|\frac{m_1n_2 + m_2n_1p^{k_2-k_1}}{m_1n_2}\right\|& \le  \|r_1\|
+\end{align*}
+Neither the numerator nor the denominator of the second term of the left hand side is divisible by $p$, for $p$ divides $p^{k_2-k_1}$ and is prime to the $m_i$ and $n_i$ by assumption. Therefore,
+\begin{align*}
+\left\|r_1\right\| \cdot \frac{1}{p^0}& \le  \|r_1\|\\
+\left\|r_1\right\| &\le  \| r_1\|.
+\end{align*}
+The inequality holds. % Am I NUTS?
+\end{proof}
+\item Let $p$ be a prime, and let $R=R_p$ be the set described in the text, 
+\begin{align*}
+R &= \{\textrm{non-zero rational numbers $x$ such that } \ord(x)\ge  0\}\cup \{0\}\\
+&= \{x\in\Q : \|x\| \le  1\}.
+\end{align*}
+(Here $\|\cdot\|$ is the $p$-adic absolute value defined in the previous exercise. So the set $R$ is a $p$-adic analogue of the interval $[-1,1]$ on the real line or of the unit disk $\{z\in\C : |z| \le  1\}$ in the complex plane.)\\
+(a) Prove that $R$ is a subring of the rational numbers.
+\begin{proof}
+$1\in R$ and $0\in R$. For all $r\in R$, $-r \in R$ since $\ord(r) = \ord(-r)$. The sum of two elements $r_1, r_2\in R$ is in $R$ since it was proved that
+$$
+\ord(r_1+r_2) = \min\{\ord(r_1), \ord(r_2)\}.
+$$ 
+The product of two elements in $R$ is also in $R$ for it was proved that
+$$
+\ord(r_1r_2) = \ord(r_1) + \ord(r_2).
+$$
+So $R$ is a subring of $\Q$. % Missing anything?
+\end{proof}
+(b) Prove that the ideal generated by $p$ is a maximal ideal, and describe the quotient field $R/pR$.
+\begin{proof}
+Suppose 
+$$
+(p) \subset I \subset R.
+$$
+Since for all $r \in (p)$ one has $\ord(r) \ge  1$, there must be some $\ell\in I$ for which $\ord(\ell) = 0$. Therefore, $\ord(\ell^{-1}) = 0$, so $\ell \ell^{-1}\in I$. So $1\in I$, and therefore $I=R$. So $(p)$ is maximal. (Another approach.) If $R/(p)$ is a field, then $(p)$ is maximal. One notices that
+$$
+R/(p) = \{ r\in R : \ord(r)=0\} \cup \{0\}.
+$$
+This quotient is clearly closed under multiplication and closed under addition as one takes the numerator of the sum of two numbers mod $p$. It has additive inverses (if $a = m/n$, take $-a = (-m)/n$) and $(R/(p))^*$ has multiplicative inverses (take $a^{-1} = n/m$). $R/(a)$ is not a field for an arbitrary $a\in R$, since $\ord(a^{-1}) < 0$ in some cases. It only works since one mods out by $p$. Therefore, $R/(p)$ is a field and $(p)$ is maximal. % describe?
+\end{proof}
+(c) Prove that the unit group of $R$ consists of all rational numbers $a/b$ such that $p$ does not divide $ab$.
+\begin{proof}
+A unit is an element with a multiplicative inverse. One notes that
+$$
+R = \{  m/n\in \Q : p \nmid n \}.
+$$
+Therefore, for $r = m/n\in R$ to have a multiplicative inverse, $p$ cannot divide $m$ either, for if $p$ divides $m$, $r^{-1} = n/m$, so $p$ divides the denominator of $r^{-1}$. In that case, $r^{-1}\notin R$. So the units of $R$ are precisely the rational numbers $a/b$ where $p$ does not divide $ab$.
+\end{proof}
+(d) Prove that $R$ is a unique factorization domain.
+\begin{proof}
+Recall that
+$$
+R^* = \{ r\in R : \ord(r) = 0\}.
+$$
+By the definition of $R$, any $r\in R$ can be written as the product of a unit and a power of $p$. $p$ is irreducible, so the factorization of anything in $R$ into the product of a unit and a power of $p$ is unique. So $R$ is a UFD.
+\end{proof}
+%(e) Describe all of the ideals of $R$. Use this description to prove that the ideal generated by $p$ is the only maximal ideal of $R$. (A ring such as $R$, which has exactly one maximal ideal. is called a \textit{local ring}.) %no idea
+%\item Let $p$ and $R$ be as in the previous exercise, and let $\sigma \ge  \nu$ be integers. Prove that the quotient group $p^\nu R/p^\sigma R$ is a cyclic group of order $p^{\sigma - \nu}$.
+%\begin{proof}
+%% Intuitive, but how to prove?
+%\end{proof}
+%\item Let $p$ be a prime, and let $S=S_p$ be the set of rational numbers whose denominator is a power of $p$. ($p^0=1$ is allowed.) Thus, $S$ consists of all rational numbers $ap^\nu$, where $a$ is an integer prime to $p$ and $\nu$ is an arbitrary integer.\\
+%(a) Prove that $S$ is a subring of the rational numbers.
+%\begin{proof}
+%
+%\end{proof}
+%(b) Prove that the unit group in $S$ consists of all numbers $\pm p^\nu$ with $\nu$ any integer.
+%\begin{proof}
+%
+%\end{proof}
+%(c) Let $q$ be a prime other than $p$. Prove that $q$ generates a maximal ideal of $S$, and describe the quotient field $S/qS$. Prove that every maximal ideal of $S$ is of this form.
+%\begin{proof}
+%
+%\end{proof}
+\setcounter{enumi}{9}
+\item Let $p\ge  2$ be a prime and let $C$ be the cubic curve 
+$$
+C : y^2 = x^3 + px.
+$$
+Find all points of finite order in $C(\Q)$.
+\begin{proof}
+By Nagell--Lutz, one finds that the possible values for $y$ are $0$, $\pm1$, $\pm2$, $\pm p$, and $\pm 2p$ (as their squares divide $D = -4p^3$). Setting $y=0$, one determines that $(0,0)$ is the only solution; this solution corresponds to the only point of order $2$. Setting $y=1$, under no circumstance does 
+$$
+1 = x^3 + px
+$$ 
+have solutions in the integers. Setting $y=2$, one finds a solution to
+$$
+4= x^3+px
+$$
+when $p=3$, namely $(1,2)$. However, $2(1,2) $ does not have integer coordinates, so $(1,2)$ is not of finite order. This equation has no other solutions in the integers for all primes $p$ since $x^3 + px$ exceeds $4$ for all primes $p>3$ with the condition that $x\in \Z$. Setting $y=p$, one gets the equation
+$$
+p^2 = x^3 + px.
+$$
+Suppose $p$ is odd. Reducing mod $2$, one obtains
+\begin{align*}
+0 &= x + x + 1\\
+	&= 1.
+\end{align*}
+So there are no solutions for odd $p$. Suppose $p=2$. Then 
+$$
+4 = x^3 + 2x.
+$$
+This equation has no integer solutions. Lastly, set $y = 2p$. One has
+$$
+4p^2 = x^3 + px.
+$$
+It follows that $p$ divides $x$. Since $x>0$, $x \ge  p$. One gets 
+$$
+x^3 + px \ge  p^3 + p^2.
+$$
+Therefore, $4p^2 \ge  p^3 + p^2$, so $p \le  3$. Setting $p=2$, one gets
+$$
+8 = x^3 +  2x,
+$$
+which has no integer solutions. Setting $p=3$, one gets
+$$
+36 = x^3 + 3x.
+$$
+One finds that $x= 3$ is the only integer solution, so $(3,6)$ is a potential point of finite order. However, $2(3,6)$ does not have integer coordinates, so $(3,6)$ is of finite order. Having exhausted all possibilities, one finds that the only rational points of finite order on $C$ are $(0,0)$ and $\OO$.
+\end{proof}
+\setcounter{enumi}{11}
+\item For each of the following cubic curves, determine all of the points of finite order. Also determine the structure of the group formed by these points.\\
+(a) $y^2 = x^3 - 2$.
+\begin{proof}
+Let $G$ be the subgroup of $C(\Q)$ consisting of all points of finite order. Silverman and Tate prove that
+$$
+G \longrightarrow \tilde C(\F_p) \quad:\quad P \longmapsto \tilde P = \begin{cases} (\tilde x, \tilde y) & P = (x,y)\\ \tilde \OO & P = \OO\end{cases}
+$$
+is an isomorphism onto a subgroup of $\tilde C(\F_p)$ if $p$ doesn't divide $2D$, where $D$ is the discriminant of $C$. In this case, one finds that $D = -108 = (-1) \times2^2 \times 3^3$. Choosing $2$ primes greater than $3$, one has
+$$
+\# \tilde C(\F_5) = 6\quad\textrm{and}\quad\# \tilde C(\F_7) = 7.
+$$
+So $\#G$ divides $6$ and $7$, and thus $\#G = 1$. So the only point of finite order is $\OO$ and $G$ is the trivial group.
+\end{proof}
+(b) $y^2 = x^3 + 8$.
+\begin{proof}
+Here, the discriminant $D = -1728 = (-1)\times 2^6\times 3^3$. One finds that
+$$
+\# \tilde C(\F_5) = 6\quad\textrm{and}\quad\# \tilde C(\F_{13}) = 16.
+$$
+So $\# G$ is at most $2$. However, one notices that $(-2, 0)$ is a solution of $C$ of order $2$. Therefore,
+$$
+G = \{ \OO, (-2,0)\} \isomto \Z/2\Z
+$$
+is cyclic of order $2$.
+\end{proof}
+(c) $y^2 = x^3 + 4$.
+\begin{proof}
+The discriminant of $C$ is $D = -432 = (-1)\times 2^4\times 3^3$. One has
+$$
+\# \tilde C(\F_7) = 3
+$$ 
+so $\# G$ is either $1$ or $3$. One notices that $(0, \pm 2)$ are points on the curve, and the horizontal coordinate of $2(0,2)$ is $0$ and that of $2(0,-2)$ is also $0$; therefore, they are points of order $3$ and comprise the group, along with the point at infinity:
+$$
+G = \{\OO, (0,2), (0,-2)\} \isomto \Z/3\Z.
+$$
+\end{proof}
+(d) $y^2 = x^3 + 4x$.
+\begin{proof}
+One has $D = -256 = (-1)\times 2^8$, and one finds that 
+$$
+\# \tilde C(\F_3) = 4.
+$$
+So $\# G$ is $1$, $2$, or $4$. $(0,0)$ is a manifest solution of order $2$. $(2,\pm 4)$ are points on the curve, and one finds that $2(2,4) = (0,0)$, $4(2,4) = \OO$, $2(2,-4) = (0,0)$, and $4(2,-4) = \OO$. So $G$ is cyclic of order $4$:
+$$
+G = \{\OO, (0,0), (2,4), (2,-4)\} \isomto \Z/4\Z.
+$$
+\end{proof}
+(f) $y^2 = x^3 + 1$.
+\begin{proof}
+$D = -27 = (-1)\times 3^3$. One notices (inconsequentially) that for the first few values of $p$, $\#\tilde C (\F_p)$ is divisible by $6$. Using Nagell--Lutz, the $y$-coordinates of the finitely-ordered points must be $0$, $\pm 1$, or $\pm 3$. One has a point of order $2$ in $(-1, 0)$. $(0, \pm 1)$ are points on the curve, and one finds that horizontal coordinate of $2(0, 1)$ is $0$, and that of $2(0, -1)$ is also $0$. Therefore, $(0,\pm 1)$ are points of order $3$. $(2,\pm 3)$ are also on the curve. One finds that $2(2,3)=(0,1)$, so $(2,\pm 3)$ (by symmetry) are of order $6$. Thus it has been shown that
+$$
+G = \{\OO, (-1,0), (0,\pm1), (2,\pm 3)\} \isomto \Z/6\Z.
+$$
+\end{proof}
+(g) $y^2 = x^3 -43x + 166$.
+\begin{proof}
+$D = -425984 = (-1)\times 2^{15} \times 13$. One finds that
+$$
+\# \tilde C(\F_3) = 7,
+$$
+so $\# G$ is $1$ or $7$. One finds that $(3,\pm 8)$ is on $C$. Taking multiples of $(3,8)$,
+\begin{align*}
+2(3,8) &= (-5, -16)\\
+3(3,8) &= (11, -32)\\
+4(3,8) & = (11, 32)\\
+5(3,8) &= (-5,16)\\
+6(3,8) &= (3, -8)\\
+7(3,8) &= \OO.
+\end{align*}
+Taking all multiples of $(3,8)$ was not necessary, but it holds that
+$$
+G=\{ \OO, (3,\pm 8), (-5,\pm 16), (11,\pm 32)\} \isomto \Z/7\Z.
+$$
+\end{proof}
+(l) $y^2 = x^3 - 4x$.
+\begin{proof}
+$D =  256  = 2^8$, and one finds that 
+$$
+\# \tilde C(\F_3) = 4.
+$$
+So $\# G$ is $1$, $2$, or $4$. $(0,0)$ is a solution of order $2$. One also finds that $(\pm2, 0)$ are solutions of order $2$. Since the group is of order $4$ and there are no points of order $4$, $G$ must be isomorphic to the $4$-group:
+$$
+G = \{ \OO, (0,0), (\pm 2, 0)\}\isomto \Z/2\Z \times \Z/2\Z.
+$$
+\end{proof}
+\end{enumerate}
+\section{The Group of Rational Points}
+\begin{enumerate}
+\setlength{\parindent}{0pt}
+%\item (a) Prove that the set of rational numbers $x$ with height $H(x)$ less than $\kappa$ contains at most $2\kappa^2 + \kappa$ elements.  
+%\begin{proof}
+%
+%\end{proof}
+%(b) Let $R(\kappa)$ be the set of rational numbers $x$ with height $H(x)$ less than $\kappa$. Prove that 
+%$$
+%\lim_{n\to\infty} \frac{\# R(\kappa)}{\kappa^2} = \frac{12}{\pi^2}. % probability of numbers being coprime?
+%$$
+%\begin{proof}
+%
+%\end{proof}
+%\setcounter{enumi}{2}
+%\item Let $C$ be a rational cubic curve given by the usual Weierstrass equation. \\
+%(a) Prove that for any rational point $P\in C(\Q)$, the limit
+%$$
+%\hat h(P) = \lim_{n\to\infty} \frac{1}{4^n}h(2^n P)
+%$$
+%exists. The quantity $\hat h(P)$ is called the \textit{canonical height of $P$}. (\textit{Hint.} Try to prove that the sequence is Cauchy.)\begin{proof}
+%$$
+%\exists\kappa : \hat h(P) \ge  \lim_{n\to\infty} h(P) - \frac{\kappa}{4^n} \forall P \in C(\Q).
+%$$
+%\end{proof}
+%(b) Prove that there is a constant $\kappa$, depending only on $a$, $b$, $c$, so that for all rational points $P$ we have
+%$$
+%-\kappa \le  \hat h(P)-h(P) \le  \kappa.
+%$$ 
+%\begin{proof}
+%
+%\end{proof}
+%(c) Prove that for any integer $m$ and any rational point $P$, 
+%$$
+%\hat h(mP) = m^2\hat h(P).
+%$$
+%\begin{proof}
+%
+%\end{proof}
+%(d) Prove that $\hat h(P) = 0$ if and only if $P$ is a point of finite order.
+%\begin{proof}
+%
+%\end{proof}
+\setcounter{enumi}{6}
+\item This exercise describes a variant of the Nagell--Lutz theorem which often simplifies calculations on curves with a rational point of order two.\\
+%(a) Let $C$ be a non-singular cubic curve given in Weierstrass form by an equation
+%$$
+%C :y^2=x^3+ax^2+bx
+%$$
+%where $a$ and $b$ are integers. Let $P=(x,y)\in C(\Q)$ be a point of finite order with $y\neq 0$. Prove that $x$ divides $b$ and that the quantity
+%$$
+%x + a + \frac{b}{x}
+%$$
+%is a perfect square. [Note that if this quantity is a square, say equal to $N^2$, then $(x,xN)$ is a rational point on $C$; but such a point need not have finite order. So this exercise gives a necessary condition for $P$ to have finite order, but not a sufficient condition.]
+%\begin{proof}
+%The discriminant of $C$ is 
+%$$
+%D = b(a^2b -4b^2 ).
+%$$
+%By Nagell--Lutz, $y^2\mid D$ for any point of finite order. But 
+%$$
+%y^2 = x(x^2 +ax+b),
+%$$
+%so $x\mid y^2$ and therefore $x\mid D$.  % where to go from here?
+%\end{proof}
+%(b) Let $p$ be a prime. Prove that the only point of finite order on the curve $C : y^2=x^3+px$ are $\OO$ and $T$.
+%\begin{proof}
+%See exercise 2.10.
+%\end{proof}
+%(c) Let $D\neq 0$ be an integer. Prove that the points of finite order on the curve $y^2 = x^3+Dx$ are as described in the following table:
+%$$
+%\{ P\in C(\Q) : P \textrm{ has finite order}\} \isomto
+%\begin{cases}
+%\Z/4\Z & D=4d^4\\
+%\Z/2\Z\oplus \Z/2\Z & D = -d^2\\
+%\Z/2\Z &\textrm{otherwise}
+%\end{cases}.
+%$$
+%\begin{proof}
+%
+%\end{proof}
+\item For primes $p$, let $C_p$ be the cubic curve $y^2=x^3+px$.\\
+(a) Prove that the rank of $C_p$ is either $0$, $1$, or $2$.
+\begin{proof}
+Silverman and Tate define a ``useful homomorphism''
+$$
+\alpha : C(\Q) \longrightarrow \Q^* /\Q^{*2} 
+$$
+where, if $b=p$,
+\begin{align*}
+\alpha(\OO) &= 1 \pmod{\Q^{*2}}\\
+\alpha(T) &= b \pmod{\Q^{*2}}\\
+\alpha(x,y) &= x \pmod{\Q^{*2}} \quad\textrm{if }x\neq 0.
+\end{align*}
+In particular, one takes $\ol b = a^2 - 4b$ (where $a=0$ in this case) and considers the curve $\ol C : y^2 = x^3 + \ol bx$. From here, this homomorphism is used to derive a formula for the rank $r$ of $C$:
+$$
+2^r = \frac{\#\alpha(C(\Q)) \cdot\#\ol\alpha(\ol {C(\Q)})}{4}.
+$$ 
+One determines the orders of $\alpha(C(\Q))$ and $\ol\alpha( \ol{C(\Q)})$ by considering all of the integer factors of $b$ (and $\ol b$) modulo rational squares. For instance, if $b=4$, then this set would be $\{\pm1, \pm2\}$. For each value $\beta$ in this set, one sees if
+$$
+N^2 = \beta M^4 + a M^2e^2 + (b/\beta)e^4
+$$
+has a solution in the integers with $M\neq 0$, $\gcd(M,e) = \gcd (N, e) = \gcd (\beta,e)=1$, and, assuming $\gcd(b/\beta,M)=1$, $\gcd(b/\beta, M) = \gcd(M,N) = 1$. If it does, then it corresponds to an element in $\alpha(C(\Q))$ whose coordinates depend on $b$, $M$, $N$, and $e$ in the following way:
+$$
+x = \frac{bM^2}{e^2},\quad y = \frac{bMN}{e^3}.
+$$ 
+With this algorithm in mind, one takes $b=p$ and $\ol b = -4p$. The relevant factors of $b$ are $\pm 1$ and $\pm p$, and out of the four equations that arise, only two of them may have solutions, so $\#\alpha \le  2 $. The relevant factors of $\ol b$ are $\pm 1$, $\pm 2$, $\pm p$, and $\pm 2p$ after modding out by squares. $8$ equations arise, and all of them may have a solution. So $\#\ol\alpha( \ol{C(\Q)}) \le  8$. Taking the maximum values for each, one determines that $r=2$, so $r\le  2$. One needs to show that each $r$ occurs.
+\end{proof}
+%(b) If $p \equiv 7\pmod {16}$, prove that $C_p$ has rank $0$.
+%\begin{proof}
+%
+%\end{proof}
+%(c) If $p \equiv 3\pmod {16}$, prove that $C_p$ has rank either $0$ or $1$. 
+%\begin{proof}
+%
+%\end{proof}
+\item Using the method developed in Section 6, find the rank of each of the following curves.\\
+(a) \qquad$y^2 = x^3+3x$.
+\begin{proof}
+Decomposing $b=3$, one attains $\pm 1$ and $\pm 3$ as potential solutions. $1$ corresponds to $\OO$ and $3$ corresponds to $T$. One finds when setting up the equations for $-1$ and $-3$ that $N^2<0$, so there are no more solutions. Therefore $\#\alpha(G) = 2$. Decomposing $\ol b = -12$, one attains $\pm 1$, $\pm 2$, $\pm 3$, and $\pm 6$ modulo squares.  $1$ corresponds to $\OO$ and $-12 \equiv -3\pmod{\Q^{*2}}$ corresponds to $T$. By Fermat's little theorem, the equations corresponding to $-1$, $2$, and $-6$ have no integer solutions. For example, with $\beta=2$, one has the equation
+$$
+N^2 = 2M^4 - 6e^4.
+$$
+It is enough to show that there are no solutions with $\gcd(M, 6)=1$ by the coprimality constraints. Fermat's little theorem says that $M^2 \equiv 1\pmod 3$. Taking the above equation modulo $3$, one attains $N^2 \equiv 2\pmod 3$. There are no solutions to this congruence, so this equation has no solutions. One takes a similar approach to the other mentioned case. One sees that $(N,M,e) = (2,1,1)$ is a solution corresponding to $-2$, and thus to $6$. So far, one has $4\le  \#\ol\alpha(\ol G) \le  6$. But $\#\ol\alpha(\ol G)$ must be a power of $2$, so $\#\ol\alpha(\ol G) = 4$. By the rank formula, the rank of $C$ is $1$.
+\end{proof}
+(b) \qquad$y^2 = x^3+5x$.
+\begin{proof}
+Decomposing $b=5$, one gets $\{ \pm1,\pm 5\}$ as the set of potential solutions. $1$ and $5$ correspond to $\OO$ and $T$ respectively, and $-1$ and $-5$ have no solutions. So $\# \alpha(G) = 2$. Decomposing $\ol b = -20$, one gets $\{\pm 1,\pm2,\pm5,\pm 10\}$ as the set of potential solutions. $1$ and $-20\equiv -5\pmod{\Q^{*2}}$ correspond to $\OO$ and $T$ respectively. $-1$ corresponds to the solution $(N, M, e) = (2,2,1)$. $5$ corresponds to the solution $(N, M, e) = (1,1,1)$. One can pair $2$ with $-10$ and $-2$ with $10$ as they correspond to the same equation. The equation corresponding to $2$ is 
+$$
+N^2 = 2M^4 -10e^4.
+$$
+Assuming $\gcd(M,10)=1$, Fermat's little theorem says that $M^4 \equiv 1\pmod 5$. Reducing the above equation modulo $5$, one attains $N^2 \equiv 2\pmod 5$, which has no solutions. So the above equation has no solutions. Since $\#\ol\alpha(\ol G)$ must be a power of $2$, one concludes that $\#\ol\alpha(\ol G) = 4$, and by the rank formula, the rank of $C$ is $1$.
+\end{proof}
+\end{enumerate}
+\medskip
+
+\bibliographystyle{amsalpha}
+\bibliography{bib}
+\end{document}
